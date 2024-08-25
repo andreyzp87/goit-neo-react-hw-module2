@@ -1,6 +1,6 @@
 import styles from './Options.module.css';
 
-const Options = ({ options, feedbackHandler, resetHandler }) => {
+const Options = ({ options, showReset, feedbackHandler, resetHandler }) => {
   return (
     <div className={styles.options}>
       {Object.keys(options).map(option => (
@@ -8,7 +8,8 @@ const Options = ({ options, feedbackHandler, resetHandler }) => {
           {options[option]}
         </button>
       ))}
-      <button onClick={() => resetHandler()}>Reset</button>
+
+      {showReset && <button onClick={() => resetHandler()}>Reset</button>}
     </div>
   );
 };

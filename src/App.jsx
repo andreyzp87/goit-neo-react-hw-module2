@@ -42,6 +42,7 @@ function App() {
   };
 
   const total = Object.values(feedback).reduce((acc, value) => acc + value, 0);
+  const positiveFeedback = (total > 0 && (feedback.good / total) * 100) || 0;
 
   return (
     <>
@@ -49,6 +50,7 @@ function App() {
 
       <Options
         options={options}
+        showReset={total > 0}
         feedbackHandler={updateFeedback}
         resetHandler={resetFeedback}
       />
@@ -58,6 +60,8 @@ function App() {
           good={feedback.good}
           bad={feedback.bad}
           neutral={feedback.neutral}
+          totalFeedback={total}
+          positiveFeedback={positiveFeedback}
         />
       )}
       {total === 0 && <Notification />}
